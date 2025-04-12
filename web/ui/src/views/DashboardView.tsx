@@ -4,7 +4,7 @@ import Gossip from "../components/Gossip";
 import { StatCard } from "../components/ui/StatCard";
 import { StatusBadge } from "../components/ui/StatusBadge";
 
-export default function DashboardView(props: {
+interface DashboardViewProps {
     stats: {
         jobsRunning: number;
         jobsQueued: number;
@@ -14,8 +14,9 @@ export default function DashboardView(props: {
         currentRound: number | undefined;
         currentStage: number | undefined;
     };
-}) {
-    // Mock data for jobs - in real app, would come from API
+}
+
+export default function DashboardView(props: DashboardViewProps) {
     const recentJobs = [
         { id: "job-1", name: "GRPO-Qwen2", status: "Training", type: "Fine-tuning", startTime: "2025-04-10 14:32", progress: 78, instance: "n1-standard-8" },
         { id: "job-2", name: "CodeLLM-7B", status: "Queued", type: "Pre-training", startTime: "Pending", progress: 0, instance: "n1-standard-16" },

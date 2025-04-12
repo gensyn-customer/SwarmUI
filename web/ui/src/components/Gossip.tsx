@@ -4,6 +4,11 @@ import SectionHeader from "./SectionHeader"
 import LoadingSpinner from "./LoadingSpinner"
 import Scrollable from "./Scrollable"
 
+interface GossipMessage {
+	node: string;
+	message: string;
+}
+
 export default function Gossip() {
 	const ctx = useSwarm()
 
@@ -48,7 +53,7 @@ export default function Gossip() {
 					<ul class="list-none">
 						<Switch>
 							<Match when={ctx.gossipMessages()?.messages.length ?? 0 > 0}>
-								{ctx.gossipMessages()?.messages.map((msg) => {
+								{ctx.gossipMessages()?.messages.map((msg: GossipMessage) => {
 									return (
 										<li class="mt-4">
 											<NodeMessage id={msg.node} message={msg.message} />

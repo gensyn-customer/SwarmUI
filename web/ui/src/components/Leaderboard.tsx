@@ -133,13 +133,13 @@ export default function Leaderboard() {
 		<div class="w-full">
 			{/* Stats */}
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
-				<div class="border border-2 border-dotted p-2">
+				<div class="border-2 border-dotted p-2">
 					Current Nodes Connected:
 					<Show when={leadersLoading() && leaders()?.leaders.length === 0} fallback={nodesConnected()}>
 						<LoadingSpinner message="..." />
 					</Show>
 				</div>
-				<div class="border border-2 border-dotted p-2">
+				<div class="border-2 border-dotted p-2">
 					Total Models Trained:
 					<Show when={uniqueVotersLoading() && uniqueVoters() === -1} fallback={uniqueVoters()}>
 						<LoadingSpinner message="..." />
@@ -152,7 +152,7 @@ export default function Leaderboard() {
 				<SectionHeader title="Leaderboard" tooltip={LeaderboardTooltip()} />
 
 				<div class="relative">
-					<form onSubmit={searchLeaderboard} class="flex uppercase mt-2 mb-2 uppercase" inert={leaderSearchResult.loading}>
+					<form onSubmit={searchLeaderboard} class="flex uppercase mt-2 mb-2" inert={leaderSearchResult.loading}>
 						<input type="text" value={searchInput()} onInput={(e) => setSearchInput(e.currentTarget.value)} placeholder="ENTER YOUR NODE NAME" class="border border-gensyn-brown p-2 flex-grow focus:outline-none focus:ring-0 focus:border-gensyn-green" />
 						<button type="submit" class="uppercase border-t border-b border-r border-gensyn-brown p-2 bg-[rgba(0,0,0,0.05)]">
 							Search
@@ -169,7 +169,7 @@ export default function Leaderboard() {
 			<div class="relative">
 				<Scrollable class="max-h-[270px] border-2 border-dotted">
 					<div ref={containerRef}>
-						<table class="min-w-full table-auto border-collapse border-dotted border-separate border-spacing-1 border-spacing-x-0 py-1 px-4">
+						<table class="min-w-full table-auto border-dotted border-separate border-spacing-1 border-spacing-x-0 py-1 px-4">
 							<thead>
 								<tr class="align-top">
 									<th class="font-normal text-left w-auto relative">
