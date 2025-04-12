@@ -1,14 +1,22 @@
-import { ParentProps } from "solid-js"
 import Navigation from "../components/ui/Navigation"
 import Header from "../components/ui/Header"
 import Footer from "../components/ui/Footer"
+import { JSX } from "solid-js"
 
 export default function MainLayout(props: {
     activeSection: string;
     setActiveSection: (section: string) => void;
     showNewJobForm: () => void;
-    stats: any;
-    children: any;
+    stats: {
+        currentRound: number | undefined;
+        currentStage: number | undefined;
+        jobsRunning: number;
+        jobsQueued: number;
+        nodesActive: number;
+        averageConvergence: string;
+        gnsBurned: number;
+    };
+    children: JSX.Element;
 }) {
     return (
         <div class="flex h-screen bg-[#f8f8f8]">
@@ -22,7 +30,7 @@ export default function MainLayout(props: {
             <div class="flex-1 overflow-y-auto">
                 <Header 
                     title={getTitle(props.activeSection)}
-                    stats={props.stats}
+                    stats={{ ...props.stats, currentRound: props.stats.currentRound ?? 0, currentStage: props.stats.currentStage ?? 0 }}
                     onNewJob={props.showNewJobForm}
                 />
 

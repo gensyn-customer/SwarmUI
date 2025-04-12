@@ -1,18 +1,26 @@
-import { For } from "solid-js"
-import Rewards from "../components/Rewards"
-import Gossip from "../components/Gossip"
-import { StatCard } from "../components/ui/StatCard"
-import { StatusBadge } from "../components/ui/StatusBadge"
+import { For } from "solid-js";
+import Rewards from "../components/Rewards";
+import Gossip from "../components/Gossip";
+import { StatCard } from "../components/ui/StatCard";
+import { StatusBadge } from "../components/ui/StatusBadge";
 
 export default function DashboardView(props: {
-    stats: any;
+    stats: {
+        jobsRunning: number;
+        jobsQueued: number;
+        nodesActive: number;
+        averageConvergence: string;
+        gnsBurned: number;
+        currentRound: number | undefined;
+        currentStage: number | undefined;
+    };
 }) {
     // Mock data for jobs - in real app, would come from API
     const recentJobs = [
         { id: "job-1", name: "GRPO-Qwen2", status: "Training", type: "Fine-tuning", startTime: "2025-04-10 14:32", progress: 78, instance: "n1-standard-8" },
         { id: "job-2", name: "CodeLLM-7B", status: "Queued", type: "Pre-training", startTime: "Pending", progress: 0, instance: "n1-standard-16" },
         { id: "job-3", name: "DeepSeek-Math", status: "Complete", type: "Fine-tuning", startTime: "2025-04-09 08:15", progress: 100, instance: "n1-standard-8" },
-    ]
+    ];
 
     return (
         <>
@@ -22,6 +30,9 @@ export default function DashboardView(props: {
                 <StatCard title="Queued Jobs" value={props.stats.jobsQueued} icon="⏱️" />
                 <StatCard title="Active Nodes" value={props.stats.nodesActive} icon="🖥️" />
                 <StatCard title="Avg. Convergence" value={props.stats.averageConvergence} icon="🔄" />
+                <StatCard title="GNS Burned" value={props.stats.gnsBurned} icon="🔥" />
+                <StatCard title="Current Round" value={props.stats.currentRound ?? "N/A"} icon="🔁" />
+                <StatCard title="Current Stage" value={props.stats.currentStage ?? "N/A"} icon="📊" />
             </div>
 
             {/* Recent Jobs */}
@@ -77,20 +88,18 @@ export default function DashboardView(props: {
             </div>
 
             {/* Charts & Metrics */}
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="font-semibold text-lg mb-4">Training Performance</h2>
-                    <div class="h-64">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 w-full">
+                <div class="bg-white rounded-lg shadow p-0 overflow-hidden"> {/* Remove padding */}
+                    <div class="h-64 w-full">
                         <Rewards />
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow p-4">
-                    <h2 class="font-semibold text-lg mb-4">Network Activity</h2>
-                    <div class="h-64 overflow-auto" id="gossip-container">
+                <div class="bg-white rounded-lg shadow p-0 overflow-hidden"> {/* Remove padding */}
+                    <div class="h-64 w-full overflow-auto" id="gossip-container">
                         <Gossip />
                     </div>
                 </div>
             </div>
         </>
-    )
+    );
 }

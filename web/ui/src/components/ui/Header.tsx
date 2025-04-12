@@ -1,6 +1,9 @@
 export default function Header(props: {
     title: string;
-    stats: any;
+    stats: {
+        currentRound: number | undefined;
+        currentStage: number | undefined;
+    };
     onNewJob: () => void;
 }) {
     return (
@@ -14,7 +17,7 @@ export default function Header(props: {
                     Round: {props.stats.currentRound} / Stage: {props.stats.currentStage}
                 </div>
                 <button 
-                    onClick={props.onNewJob}
+                    onClick={() => props.onNewJob()}
                     class="bg-gensyn-brown text-gensyn-pink px-4 py-2 rounded hover:bg-opacity-90"
                 >
                     Create Training Job

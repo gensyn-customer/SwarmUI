@@ -1,4 +1,4 @@
-export function StatCard(props: { title: string; value: any; icon: string }) {
+export function StatCard(props: { title: string; value: string | number; icon: string }) {
     return (
         <div class="bg-white rounded-lg shadow p-6">
             <div class="flex items-center justify-between">

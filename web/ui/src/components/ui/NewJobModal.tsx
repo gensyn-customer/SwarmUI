@@ -7,7 +7,7 @@ export default function NewJobModal(props: {
             <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold">Create New Training Job</h2>
-                    <button onClick={props.onClose} class="text-gray-500 hover:text-gray-700">
+                    <button onClick={() => props.onClose()} class="text-gray-500 hover:text-gray-700">
                         ✕
                     </button>
                 </div>
@@ -63,13 +63,13 @@ export default function NewJobModal(props: {
                 
                 <div class="flex justify-end mt-6">
                     <button 
-                        onClick={props.onClose}
+                        onClick={() => props.onClose()}
                         class="border border-gray-300 px-4 py-2 rounded mr-2 hover:bg-gray-50"
                     >
                         Cancel
                     </button>
                     <button 
-                        onClick={props.onSubmit}
+                        onClick={() => props.onSubmit()}
                         class="bg-gensyn-brown text-gensyn-pink px-4 py-2 rounded hover:bg-opacity-90"
                     >
                         Create Job
